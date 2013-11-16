@@ -1,0 +1,144 @@
+.media__obj {}
+.media__obj .img {}
+.media__obj .caption {}
+.media__obj .title {}
+.media__obj .text {}
+.media__obj .link {}
+
+.nav {}
+.nav .button {}
+.nav .previous {}
+.nav .next {}
+
+.is-hidden {}
+
+.carousel {}
+.carousel__radio-control {}
+.carousel__viewport {}
+.carousel__container {}
+.carousel__item.media__obj {}
+.carousel__img.img {}
+.carousel__caption.caption {}
+.carousel__title.title {}
+.carousel__text.text {}
+.carousel__link.link {}
+.carousel__nav.nav {}
+.carousel__nav-item.button {}
+.carousel__nav-previous.button {}
+.carousel__nav-next.button {}
+
+
+.is-hidden {
+  display: none;
+}
+
+
+
+.carousel {
+  width: 100%;
+  @extend %clearfix;
+  }
+  .carousel__item {
+    width: 100%;
+    background-color: $white;
+    position: relative;
+    padding: 0 ($horizontal-gutter / 2);
+    margin-bottom: $vertical-gutter;
+    @extend %box-sizing;
+    }
+    .carousel__img {
+      width: 100%;
+      }
+    .carousel__caption {}
+      .carousel__title {
+        @include font-size($h3);
+        font-weight: 400;
+        border-bottom: 1px solid $lightneutralcolor;
+        text-transform: capitalize;
+        padding-bottom: $vertical-gutter / 4;
+        margin: ($vertical-gutter / 2) 0;
+        }
+      .carousel__text {
+        @include font-size($base);
+        @include hyphens(none);
+        }
+      .carousel__link {
+        text-align: right;
+        display: block;
+        }
+
+  .carousel__nav { display: none; }
+
+@include breakpoint($bp3, min-width) {
+.carousel {
+  position: relative;
+  }
+
+  .carousel__viewport {
+    width: 100%;
+    overflow: hidden; // hidden
+    }
+    .carousel__container {
+      display: block;
+      width: 500%;
+      transition: margin $transitionSpeed;
+      }
+      .carousel__item {
+        background-color: red;
+        padding: 0;
+        float: left;
+        width: (100%/5); // 100% of container with divded by number of items
+        margin-bottom: 0; // remove margin at bottom
+        }
+        .carousel__img {
+          display: block;
+          }
+        .carousel__caption {
+          background-color: rgba(0,0,0,0.5);
+          bottom: 0;
+          color: $white;
+          position: absolute;
+          padding: 0 ($horizontal-gutter / 2) ($vertical-gutter / 2);
+
+          }
+          .carousel__title {
+            border-bottom: none;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.3);
+            padding: 0;
+            }
+
+      .carousel__item::after {
+        content: none;
+        }
+
+  .carousel__nav {
+    display: block;
+    text-align: center;
+    }
+    .carousel__nav-item,
+    .carousel__nav-previous,
+    .carousel__nav-next {
+      background-color: rgba(0,0,0,0);
+      border: none;
+      }
+    .carousel__nav-previous {
+      float: left;
+      }
+    .carousel__nav-next {
+      float: right;
+      }
+
+  // Slide positioning
+  #item1:checked ~ .carousel__viewport .carousel__container { margin-left:    0;  }
+  #item2:checked ~ .carousel__viewport .carousel__container { margin-left: -100%; }
+  #item3:checked ~ .carousel__viewport .carousel__container { margin-left: -200%; }
+  #item4:checked ~ .carousel__viewport .carousel__container { margin-left: -300%; }
+  #item5:checked ~ .carousel__viewport .carousel__container { margin-left: -400%; }
+
+  // slide nav highlighting
+  #item1:checked ~ .carousel__nav .carousel__nav-item[for=slide1] { color: $primarycolor; }
+  #item2:checked ~ .carousel__nav .carousel__nav-item[for=slide2] { color: $primarycolor; }
+  #item3:checked ~ .carousel__nav .carousel__nav-item[for=slide3] { color: $primarycolor; }
+  #item4:checked ~ .carousel__nav .carousel__nav-item[for=slide4] { color: $primarycolor; }
+  #item5:checked ~ .carousel__nav .carousel__nav-item[for=slide5] { color: $primarycolor; }
+}
