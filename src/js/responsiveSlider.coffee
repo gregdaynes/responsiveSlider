@@ -1,6 +1,3 @@
-if typeof DEBUG is 'undefined'
-  DEBUG = true
-
 ###
 stop scroll on hover
 ###

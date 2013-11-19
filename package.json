@@ -1,15 +1,15 @@
 {
-  "name": "responsiveSlider",
+  "name": "github-module-repo",
   "version": "0.1.0",
-  "description": "grunt script for build process",
+  "description": "template for github module project",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gregdaynes/responsiveSlider.git"
+    "url": "https://github.com/gregdaynes/github-module-repo.git"
   },
-  "author": "iG Design / Gregory Daynes",
+  "author": "Gregory Daynes",
   "license": "GPL v3",
   "bugs": {
-    "url": "https://github.com/gregdaynes/responsiveSlider/issues"
+    "url": "https://github.com/gregdaynes/github-module-repo/issues"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -22,12 +22,13 @@
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-autoprefixer": "~0.4.0",
     "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-uglify": "~0.2.5",
+    "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-compress": "~0.5.2",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-jshint": "~0.7.0",
     "grunt-contrib-imagemin": "~0.3.0",
-    "grunt-webfont": "~0.2.0"
+    "grunt-webfont": "~0.2.0",
+    "grunt-processhtml": "~0.2.5"
   }
 }
