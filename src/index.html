@@ -1,8 +1,14 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Carousel</title>
-    <link rel="stylesheet" href="responsiveSlider.css" type="text/css" media="screen" charset="utf-8">
+    <title>responsiveSlider</title>
+    <link rel="stylesheet" href="responsiveSlider.css" type="text/css" media="screen">
+
+    <!-- build:js responsiveSliderClassy.js -->
+    <script src="devUtility.js"></script>
+    <script src="responsiveSliderClassy.js"></script>
+    <!-- /build -->
   </head>
   <body>
 
@@ -79,13 +85,16 @@
       </nav>
     </div>
 
-    <!-- build:js responsiveSlider.js -->
-    <script src="devUtility.js"></script>
-    <script src="responsiveSlider.js"></script>
-    <!-- /build -->
+    <script>
+        var responsiveSlider = new ResponsiveSlider({
+                 'element': document.getElementsByClassName('js-carousel')[0],
+                  'radios':  document.getElementsByClassName('carousel__radio-control'),
+              'nextButton': document.getElementsByClassName('js-carousel-button-next')[0],
+          'previousButton': document.getElementsByClassName('js-carousel-button-previous')[0],
+                'interval': 5000
+        }).action('start')
 
-    <!-- build:remove -->
-    <script src="//localhost:35729/livereload.js"></script>
-    <!-- /build -->
+    </script>
+
   </body>
 </html>

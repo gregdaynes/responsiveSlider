@@ -54,12 +54,28 @@ module.exports = (grunt) ->
         src: '**/*.*'
         dest: 'dist/media/'
 
+    # !HTML Workflow
     processhtml:
       dist:
         options:
           process: true
         files:
           'dist/index.html': 'src/index.html'
+
+    htmlmin:
+      dist:
+        options:
+          removeComments: true
+          collapseWhitespace: true
+          collapseBooleanAttributes: true
+          removeAttributeQuotes: true
+          removeRedundantAttributes: true
+          useShortDoctype: true
+          removeEmptyAttributes: true
+          removeOptionalTags: true
+#           removeEmptyElements: true
+        files:
+          'dist/index.html': 'dist/index.html'
 
 
     # !CSS Workflow
@@ -72,7 +88,7 @@ module.exports = (grunt) ->
           expand: true,
           cwd: 'src/css/',
           dest: '.tmp/css/',
-          src: ['**/*.scss', '!_*.scss', '!modules/**/*.scss', '!blocks/**/*.scss', '!pages/**/*.scss']
+          src: ['**/*.scss', '!_*.scss', '!modules/**/*.scss']
           ext: '.css',
         }]
 
@@ -92,9 +108,10 @@ module.exports = (grunt) ->
         cwd: '.tmp/css'
         src: '**/*.css'
 
-    uncss:
-      build:
-        files: 'dist/responsiveSlider.css': 'dist/index.html'
+#     uncss:
+#       build:
+#         files: 'dist/responsiveSlider.css':'dist/index.html'
+
 
     cssmin:
       build:
@@ -114,7 +131,7 @@ module.exports = (grunt) ->
     coffee:
       options:
         sourceMap: true
-        bare: false
+        bare: true
       build:
         expand: true
         flatten: true
@@ -133,7 +150,7 @@ module.exports = (grunt) ->
           dead_code: true
       build:
         expand: true
-        # flatten: true
+        flatten: true
         cwd: '.tmp/js/'
         src: '*.js'
         dest: 'dist/'
@@ -185,12 +202,13 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-shell'
     grunt.loadNpmTasks 'grunt-processhtml'
     grunt.loadNpmTasks 'grunt-uncss'
+    grunt.loadNpmTasks 'grunt-contrib-htmlmin'
 
     # !Register Tasks
     grunt.registerTask 'default', ['shell', 'media', 'html', 'css', 'js', 'connect', 'watch']
 
-    grunt.registerTask 'css', ['sass', 'autoprefixer', 'copy_css', 'uncss','cssmin']
+    grunt.registerTask 'css', ['sass', 'autoprefixer', 'copy_css','cssmin']
     grunt.registerTask 'copy_css', ['copy:css', 'copy:cssdist']
     grunt.registerTask 'js', ['coffee', 'uglify', 'copy:js', 'copy:js_raw', 'copy:js_src_coffee']
     grunt.registerTask 'media', ['copy:media_dev', 'copy:media_dist']
-    grunt.registerTask 'html', ['copy:htmldev', 'processhtml']
+    grunt.registerTask 'html', ['copy:htmldev', 'processhtml', 'htmlmin']
